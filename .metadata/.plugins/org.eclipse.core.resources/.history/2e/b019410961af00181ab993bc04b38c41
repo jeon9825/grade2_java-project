@@ -1,0 +1,36 @@
+package guibasic;
+
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.FlowLayout;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+
+class MyFrame extends JFrame implements ActionListener {
+	JButton b1, b2, b3, b4;
+
+	MyFrame() {
+		super("MyFrame 만들기"); // ==setTitle("MyFrame 만들기");
+		setSize(350, 300);
+		setVisible(true);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // 프로그램 종료
+
+		Container ctPane = getContentPane();
+		ctPane.setBackground(Color.pink);
+
+		ctPane.setLayout(new FlowLayout());
+		b1 = new JButton("파란색");
+
+		ctPane.add(b1);
+
+	}
+}
+
+public class TestGuiSwingBasic {
+	public static void main(String[] args) {
+		MyFrame frame = new MyFrame();
+
+	}
+}

@@ -1,0 +1,36 @@
+package guibasic;
+
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.FlowLayout;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+
+class MyFrame extends JFrame {
+JButton b1, b2;
+	MyFrame() {
+		super("MyFrame 만들기"); // ==setTitle("MyFrame 만들기");
+
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // 프로그램 종료
+		
+		
+		b1=new JButton("노란색");
+		b2=new JButton("분홍색");
+		
+		
+		Container ctPane = getContentPane();
+		ctPane.add(b1);
+		ctPane.add(b2);
+		
+		setSize(350, 300);
+		setVisible(true);
+	}
+}
+
+public class TestGuiSwingBasic {
+	public static void main(String[] args) {
+		MyFrame frame = new MyFrame();
+
+	}
+}
