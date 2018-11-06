@@ -6,8 +6,20 @@
     android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/button_melon"
+        android:id="@+id/StartButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="멜론 이동" />
+        android:text="start" />
+
+    <Button
+        android:id="@+id/StopButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="stop" />
+
+    <Button
+        android:id="@+id/MelonButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="MELON" />
 </LinearLayout>
