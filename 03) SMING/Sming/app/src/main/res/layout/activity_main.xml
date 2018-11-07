@@ -17,9 +17,31 @@
         android:layout_height="wrap_content"
         android:text="stop" />
 
-    <Button
-        android:id="@+id/MelonButton"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="MELON" />
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/GenieButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="GENIE" />
+
+        <Button
+            android:id="@+id/BugsButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="BUGS" />
+
+        <Button
+            android:id="@+id/MelonButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="MELON" />
+    </LinearLayout>
+
 </LinearLayout>

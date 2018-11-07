@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         stopButton.setOnClickListener(new Button.OnClickListener(){
             @Override
             public void onClick(View view) {
-                startProjection();
+                stopProjection();
             }
         });
 
@@ -77,6 +77,32 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 //타 어플(멜론)의 Activity 실행
                 ComponentName cn = new ComponentName("com.iloen.melon", "com.iloen.melon.MusicBrowserActivity");
+                Intent intent = new Intent(Intent.ACTION_MAIN);
+                intent.addCategory(Intent.CATEGORY_LAUNCHER);
+                intent.setComponent(cn);
+                startActivity(intent);
+            }
+        });
+
+        final Button genieButton = (Button) findViewById(R.id.GenieButton);
+        melonButton.setOnClickListener(new Button.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                //타 어플(멜론)의 Activity 실행
+                ComponentName cn = new ComponentName("com.ktmusic.geniemusic", "com.ktmusic.geniemusic.DummyActivity");
+                Intent intent = new Intent(Intent.ACTION_MAIN);
+                intent.addCategory(Intent.CATEGORY_LAUNCHER);
+                intent.setComponent(cn);
+                startActivity(intent);
+            }
+        });
+
+        final Button bugsButton = (Button) findViewById(R.id.BugsButton);
+        melonButton.setOnClickListener(new Button.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                //타 어플(멜론)의 Activity 실행
+                ComponentName cn = new ComponentName("com.neowiz.android.bugs", "com.neowiz.android.bugs.activity.HomeActivity");
                 Intent intent = new Intent(Intent.ACTION_MAIN);
                 intent.addCategory(Intent.CATEGORY_LAUNCHER);
                 intent.setComponent(cn);
@@ -124,6 +150,15 @@ public class MainActivity extends AppCompatActivity {
 
     private void startProjection() {
         startActivityForResult(mProjectionManager.createScreenCaptureIntent(), REQUEST_CODE);
+    }
+
+    private void stopProjection() {
+        mHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                mProjection.stop();
+            }
+        });
     }
 
     private class VirtualDisplayCallback extends VirtualDisplay.Callback {
