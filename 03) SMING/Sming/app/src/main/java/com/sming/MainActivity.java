@@ -110,6 +110,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        final Button youtubeButton = (Button) findViewById(R.id.YoutubeButton);
+        melonButton.setOnClickListener(new Button.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                //타 어플(멜론)의 Activity 실행
+                ComponentName cn = new ComponentName("com.google.android.youtube", "com.google.android.youtube.app.honeycomb.Shell$HomeActivity");
+                Intent intent = new Intent(Intent.ACTION_MAIN);
+                intent.addCategory(Intent.CATEGORY_LAUNCHER);
+                intent.setComponent(cn);
+                startActivity(intent);
+            }
+        });
+
         // start capture handling thread
         new Thread() {
             @Override
