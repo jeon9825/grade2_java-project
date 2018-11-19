@@ -4,7 +4,6 @@ import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.ImageFormat;
 import android.graphics.Point;
 import android.hardware.display.DisplayManager;
@@ -26,9 +25,10 @@ import android.view.View;
 import android.widget.Button;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.Buffer;
+import java.io.OutputStream;
 import java.nio.ByteBuffer;
 
 public class MainActivity extends AppCompatActivity {
@@ -190,37 +190,41 @@ public class MainActivity extends AppCompatActivity {
                 final int height = size.y;
                 final String STORE_DIRECTORY = Environment.getExternalStorageDirectory()+"/DCIM";
                 final File file = new File(STORE_DIRECTORY);
-
                 mImageReader = ImageReader.newInstance(width, height, ImageFormat.JPEG, 2);
                 mProjection.createVirtualDisplay("screen capture", width, height, density, flags, mImageReader.getSurface(), new VirtualDisplayCallback(), mHandler);
                 mImageReader.setOnImageAvailableListener(new ImageReader.OnImageAvailableListener() {
                     @Override
                     public void onImageAvailable(ImageReader reader) {
-                        Image image = null;
-                        FileOutputStream fos = null;
-                        Bitmap bitmap = null;
-                        try{
-                            image = mImageReader.acquireLatestImage();
-                            if (image != null){
-                                // 여기 밑에서 부터 오류가 생기는건 알겠음. 근데 왜 오류 생기는지 모를일임
-//                                Image.Plane[] planes = image.getPlanes();
-//                                ByteBuffer buffer = planes[0].getBuffer();
-//                                int pixelStride = planes[0].getPixelStride();
-//                                int rowStride = planes[0].getRowStride();
-//                                int rowPadding = rowStride - pixelStride * width;
-//                                bitmap = Bitmap.createBitmap(width + rowPadding / pixelStride, height, Bitmap.Config.ARGB_8888);
-//                                bitmap.copyPixelsFromBuffer(buffer);
-
-//                                //그 다음 저장하는 부분
-//                                fos = new FileOutputStream(STORE_DIRECTORY + "/myscreen_" + imagesProduced + ".jpg");
-//                                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
-//                                imagesProduced++;
-                            }
-                        } catch (Exception e){
+                        Image image=null;
+                        try {
+                            image = reader.acquireLatestImage();
+                            ByteBuffer buffer = image.getPlanes()[0].getBuffer();
+                            byte[] bytes = new byte[buffer.capacity()];
+                            buffer.get(bytes);
+                            save(bytes);
+                        } catch (FileNotFoundException e) {
                             e.printStackTrace();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        } finally {
+                            if (image != null) {
+                                image.close();
+                                reader.close();
+                            }
                         }
                     }
-                },mHandler);
+                    private void save(byte[] bytes) throws IOException {
+                        OutputStream output = null;
+                        try {
+                            output = new FileOutputStream(file);
+                            output.write(bytes);
+                        } finally {
+                            if (null != output) {
+                                output.close();
+                            }
+                        }
+                    }
+                }, mHandler);
             }
         }
         super.onActivityResult(requestCode, resultCode, data);

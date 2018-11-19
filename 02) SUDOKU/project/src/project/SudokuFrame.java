@@ -11,7 +11,7 @@ import project.PuzzleType;
 import project.NewGameListener;
 
 public class SudokuFrame extends JFrame {
-	private JPanel buttonSelectionPanel; // 전체적인 틀
+	private JPanel buttonSelectionPanel;
 	
 	public SudokuFrame() {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
