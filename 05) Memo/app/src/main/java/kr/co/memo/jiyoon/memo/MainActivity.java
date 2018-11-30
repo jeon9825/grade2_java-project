@@ -1,5 +1,3 @@
-
-
 package kr.co.memo.jiyoon.memo;
 
 import android.content.Context;
@@ -18,6 +16,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import kr.co.memo.jiyoon.memo.adapter.MemoListAdapter;
+import kr.co.memo.jiyoon.memo.database.DbOpenHelper;
 import kr.co.memo.jiyoon.memo.item.MemoItem;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
@@ -25,14 +24,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     RecyclerView memoList;
     MemoListAdapter memoListAdapter;
     LinearLayoutManager layoutManager;
+    DbOpenHelper dbOpenHelper;
 
     Spinner categorySpinner;
     EditText memoEdit;
+    int position =0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        dbOpenHelper = new DbOpenHelper(this);
+        dbOpenHelper.open();
         context= this;
         setView();
     }
@@ -83,6 +85,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         addMemoItem(category,memo);
+        dbOpenHelper.insert(position++,category,memo,"2018-11-30");
 
         categorySpinner.setSelection(0);
         memoEdit.setText("");
