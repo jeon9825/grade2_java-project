@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -146,6 +147,5 @@ public class MemoListAdapter extends RecyclerView.Adapter<MemoListAdapter.ViewHo
                 return true;
             }
         };
-
     }
 }
