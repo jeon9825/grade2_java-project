@@ -16,4 +16,28 @@ public class MemoItem {
         this.memo=memo;
         this.date=formatter.format(date);
     }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public String getMemo() {
+        return memo;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public void setMemo(String memo) {
+        this.memo = memo;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
 }

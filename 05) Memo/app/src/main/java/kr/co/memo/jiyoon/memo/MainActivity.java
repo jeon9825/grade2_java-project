@@ -33,8 +33,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        dbOpenHelper = new DbOpenHelper(this);
-        dbOpenHelper.open();
+//        dbOpenHelper = new DbOpenHelper(this);
+//        dbOpenHelper.open();
         context= this;
         setView();
     }
@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         addMemoItem(category,memo);
-        dbOpenHelper.insert(position++,category,memo,"2018-11-30");
+//        dbOpenHelper.insert(position++,category,memo,"2018-11-30");
 
         categorySpinner.setSelection(0);
         memoEdit.setText("");
