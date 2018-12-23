@@ -1,7 +1,7 @@
 # grade2_java-project
 
 ## 02 SUDOKU 
-![java](sudoku.png)
+![java](./sudoku.png)
 
 ## 04 숫자야구
 [숫자야구 실행 동영상](https://www.youtube.com/watch?v=lX_GYyF9xDI)
